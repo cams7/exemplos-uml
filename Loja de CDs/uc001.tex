@@ -13,7 +13,8 @@ Atendente vende um ou mais CDs à um usuário.
 \section{Pré-condições}
 
 \begin{enumerate}
-	\item Estar logado no sistema e com acesso à função.
+	\item O Atendente deve estar logado no sistema.
+	\item O Atendente deve ter acesso à função.
 \end{enumerate}
 
 \section{Fluxo de evento}
@@ -22,48 +23,61 @@ Atendente vende um ou mais CDs à um usuário.
 
 \begin{enumerate}	
 	\item O Atendente seleciona a opção \textbf{Vender CDs}.
-	\item O Sistema exibe a lista de CDs. \label{fluxo_basico:2}
+	\item O Sistema exibe a lista de CDs. \label{uc001_fluxo_basico:2}
 	\item O Atendente seleciona os CDs, informando as respectivas quantidades.
-	\item O Sistema exibe a lista de clientes. \label{fluxo_basico:4}
+	\item O Sistema exibe a lista de clientes. \label{uc001_fluxo_basico:4}
 	\item O Atendente seleciona o cliente.
 	\item O Atendente seleciona a opção \textbf{Vender}.
 	\item O Sistema exibe as informações da venda: CDs, quantidades e o cliente.
-	\item O Atendente confirma as informações da venda. \label{fluxo_basico:8}
-	\item O Sistema efetua a venda, verificando a regra RN\ref{rn:1}. \label{fluxo_basico:9}
+	\item O Atendente confirma as informações da venda. \label{uc001_fluxo_basico:8}
+	\item O Sistema efetua a venda, verificando a regra RN\ref{uc001_rn:1}. \label{uc001_fluxo_basico:9}
 	\begin{enumerate}
 		\item O Atendente seleciona o tipo de venda: \textbf{A prazo} ou \textbf{À Vista}.
 		\item O Sistema deve executar o caso de uso \nameref{uc002} ou o caso de uso \nameref{uc003}, de acordo com opção selecionada pelo Atendente no passo anterior.
-		\item O sistema atualiza o estoque de acordo com a regra RN\ref{rn:2}. 
+		\item O sistema atualiza o estoque de acordo com a regra RN\ref{uc001_rn:2}. 
 	\end{enumerate}
-	\item O sistema emite a Nota fiscal conforme à ED\ref{ed:1}.
+	\item O sistema emite a Nota fiscal conforme à ED\ref{uc001_ed:1}.
 	\item O caso de uso é encerrado.  
 \end{enumerate}
 
 \subsection{Fluxo alternativo}
 
 \begin{enumerate}
-	\item Alternativa ao passo \ref{fluxo_basico:4} - Cliente não cadastrado:
+	\item Alternativa ao passo \ref{uc001_fluxo_basico:4} - Cliente não cadastrado:
 	\begin{enumerate}
 		\item O Atendente seleciona a opção \textbf{Cadastrar Cliente}.
 		\item O Sistema executa o caso de uso \nameref{uc008}.
-		\item O Sistema retorna ao passo \ref{fluxo_basico:4}.
+		\item O Sistema retorna ao passo \ref{uc001_fluxo_basico:4}.
 	\end{enumerate}
-	\item Alternativa ao passo \ref{fluxo_basico:8} - Informações incorretas:
+	\item Alternativa ao passo \ref{uc001_fluxo_basico:8} - Informações incorretas:
 	\begin{enumerate}
 		\item O Atendente não confirma as informações de venda.
-		\item O Sistema retorna ao passo \ref{fluxo_basico:2}.
+		\item O Sistema retorna ao passo \ref{uc001_fluxo_basico:2}.
 	\end{enumerate}
-	\item Alternativa ao passo \ref{fluxo_basico:9} - A regra RN\ref{rn:1} não é atendida:
+	\item Alternativa ao passo \ref{uc001_fluxo_basico:9} - A regra RN\ref{uc001_rn:1} não é atendida:
 	\begin{enumerate}
 		\item O Sistema exibe a mensagem: \textbf{Não há produtos disponíveis em estoque}.
 		\item O caso de uso é encerrado.
 	\end{enumerate}
 \end{enumerate}
 
+
+\section{Pós-condições}
+
+\begin{enumerate}
+	\item Venda efetuada, se as regras de validação forem verificadas.
+\end{enumerate}
+
+\section{Regras de negócio}
+\begin{enumerate}
+	\item O produto deve está disponivel em estoque. \label{uc001_rn:1}
+	\item O sistema deve atualizar o estoque de produtos: para cada produto selecionado para venda, o sistema deve subtrair a quantidade disponível em estoque. \label{uc001_rn:2}
+\end{enumerate}
+
 \section{Estrutura de dados}
 
 \begin{enumerate}
-	\item Nota fiscal: \label{ed:1}
+	\item Nota fiscal: \label{uc001_ed:1}
 	\begin{enumerate}
 		\item CPF do cliente.
 		\item Nome do cliente.
@@ -81,18 +95,12 @@ Atendente vende um ou mais CDs à um usuário.
 	\end{enumerate}
 \end{enumerate}
 
-\section{Regras de negócio}
-\begin{enumerate}
-	\item O produto deve está disponivel em estoque. \label{rn:1}
-	\item O sistema deve atualizar o estoque de produtos: para cada produto selecionado para venda, o sistema deve subtrair a quantidade disponível em estoque. \label{rn:2}
-\end{enumerate}
 
-\section{Requerimentos especiais}
 
-Não aplicável.
+%\section{Requerimentos especiais}
 
-\section{Pós-condições}
+%Não aplicável.
 
-\section{Pontos de extensão}
+%\section{Pontos de extensão}
 
-Nenhum.
+%Nenhum.
